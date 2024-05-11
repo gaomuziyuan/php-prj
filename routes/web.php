@@ -6,7 +6,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/testResult', [\App\Http\Controllers\TestController::class, 'test']);
+//Route::get('/testResult', [\App\Http\Controllers\TestController::class, 'test']);
 
 Route::get('/upload', function () {
     return view('upload');

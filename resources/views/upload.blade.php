@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Upload</title>
-</head>
-<body>
+@extends("layouts.app")
+
+@section("content")
 <h1>Upload a File</h1>
 
 @if ($errors->any())
@@ -24,5 +19,4 @@
     <input type="file" id="fileUpload" name="document">
     <button type="submit">Upload</button>
 </form>
-</body>
-</html>
+@endsection
