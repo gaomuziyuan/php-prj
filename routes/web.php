@@ -14,4 +14,4 @@ Route::get('/upload', function () {
 Route::post('/upload', [\App\Http\Controllers\FileUploadController::class, 'store'])->name('file.upload');
 
 Route::resource('posts', \App\Http\Controllers\PostController::class);
-Route::resource('comments', \App\Http\Controllers\CommentController::class);
+Route::resource('posts.comments', \App\Http\Controllers\CommentController::class);

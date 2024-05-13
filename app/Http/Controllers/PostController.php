@@ -10,9 +10,17 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::all();
+        $query = Post::with('comments');
+        if ($request->has('search')) {
+            $query->where(function ($query) use ($request) {
+                $search = $request->input('search');
+                $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('content', 'like', '%' . $search . '%');
+            });
+        }
+        $posts = $query->simplePaginate(2);
         return view('posts.index', compact('posts'));
     }
 
@@ -32,10 +40,18 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
         $post = new Post();
         $post->title = $validatedData['title'];
         $post->content = $validatedData['content'];
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/images');
+            $post->image = $path;
+        } else {
+            $post->image = null;
+        }
         $post->save();
         return redirect()->route('posts.index');
     }
