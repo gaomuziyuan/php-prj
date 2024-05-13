@@ -21,7 +21,7 @@ class PostController extends Controller
             });
         }
         $posts = $query->simplePaginate(2);
-        return view('posts.index', compact('posts'));
+        return view('blog', compact('posts'));
     }
 
     /**

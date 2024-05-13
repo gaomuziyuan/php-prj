@@ -1,0 +1,30 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+header, footer {
+    background-color: #f8f9fa;
+    padding: 10px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+main {
+    margin: 20px;
+}
+
+@media (max-width: 600px) {
+    nav ul li {
+        display: block;
+        margin-bottom: 5px;
+    }
+}
